@@ -1,8 +1,6 @@
 # UT-Course-Availability-Tracker
 
-This Python script, tailored specifically for the University of Texas at Austin, is currently undergoing early testing to streamline course enrollment processes. Designed to address the challenges of course waitlists, the script monitors the availability of courses and alerts users when a spot becomes open. Please note that this tool is in its early testing phase and is currently limited to UT Austin's course system.
-
-In the dynamic academic environment of UT Austin, certain courses may lack a waitlist option, requiring vigilant monitoring to secure enrollment. This script automates the process, continuously checking for status changes and notifying users via text message when a coveted course becomes available. By leveraging this tool during its early testing phase, users can gain a competitive edge in course selection and enrollment.
+Are you a UT Austin student TIRED of not getting your classes??? Are you someone that hates classes that don't have waitlists and wish you could hire a team of 1000 to constantly monitor a closed class in case it opens up so you can snipe a spot??? HAVE NO FEAR! This script allows you to constantly refresh the status of a current course as well as get the status of past courses. SNIPE your classes with EASE.
 
 # NOTE:
 This script is in EARLY TESTING and ONLY WORKS IF DUO MOBILE IS SET TO CALL YOU! OTHERWISE it will NOT WORK! I am working to hopefully add functionality for mobile app users and text message users.
