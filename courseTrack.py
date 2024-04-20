@@ -4,6 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support import expected_conditions as EC
+import pyperclip
 import time
 import easygui
 import credentials
@@ -22,6 +23,7 @@ def getStatus(UNIQUE_ID, FALL, YEAR, show_gui, refresh_interval):
     print('Authenticating...')
     
     driver.get(login_url)
+    driver.set_window_size(600,600)
     wait = WebDriverWait(driver, 60)
 
     usernameLocate = (By.ID, "username")
@@ -45,11 +47,11 @@ def getStatus(UNIQUE_ID, FALL, YEAR, show_gui, refresh_interval):
 
     button_field = wait.until(EC.element_to_be_clickable(button_locator))
     button_field.click()
-
-    time.sleep(3)
-    driver.minimize_window()
-
+    
+    time.sleep(3) # wait for window to change. If list index out of range error on line 57, increase the sleep timer
+    
     last_status = None
+    driver.minimize_window()
 
     while (True):
         className = driver.find_elements(by=By.TAG_NAME, value="h2")[0].text
@@ -61,10 +63,7 @@ def getStatus(UNIQUE_ID, FALL, YEAR, show_gui, refresh_interval):
             x.text == "closed"
         ][0].text
 
-        if (refresh_interval):
-            SLEEP_TIME = refresh_interval
-        else:
-            SLEEP_TIME = 10 # default is 10 sec
+        SLEEP_TIME = refresh_interval if refresh_interval else 60 # every minute is the default refresh time
 
         if (cur_status == last_status):
             print(f"Unique ID {UNIQUE_ID} is still {last_status}.")
@@ -78,20 +77,26 @@ def getStatus(UNIQUE_ID, FALL, YEAR, show_gui, refresh_interval):
                 print(f"{className} with unique ID {UNIQUE_ID} is cancelled for {YEAR}.")
                 exit(0)
             else:
-                notifyUser(f"{className} with unique id {UNIQUE_ID} is now {cur_status}!")
+                notifyUser(f"{className} with unique id {UNIQUE_ID} is now {cur_status}!", driver, UNIQUE_ID)
         
         last_status = cur_status
         time.sleep(SLEEP_TIME)
         driver.refresh()
 
-def notifyUser(body):
-    userIn = easygui.ynbox(body + "\nWould you like to go to the registration page?", "courseTrack", ("Yes", "No"))
+def notifyUser(body, driver, UNIQUE_ID):
+    userIn = easygui.ynbox(body + "\nWould you like to go to the registration page?\n\nIf you select \"Yes\", the unique ID will be copied to your clipboard.", "courseTrack", ("Yes", "No"))
     if (userIn):
-        goToRegistrationPage(webdriver)
+        pyperclip.copy(UNIQUE_ID)
+        goToRegistrationPage(driver)
         
-def goToRegistrationPage(webdriver):
-    # TODO
-    return 0
+def goToRegistrationPage(driver):
+    driver.maximize_window()
+    registrationURL = "https://utdirect.utexas.edu/registration/chooseSemester.WBX"
+    #driver.get(registrationURL)
+    newDriver = driver
+    newDriver.get(registrationURL)
+    input("Press Enter to exit...")
+    exit(0)
         
 def main():
     parser = argparse.ArgumentParser(description="Script to periodically check if a current UT course is CLOSED, OPEN, RESERVED, or WAITLISTED. Please invoke the script with the first argument being the course's unique ID number.\n\nEX: python courseTrack.py 50700\n\n")
