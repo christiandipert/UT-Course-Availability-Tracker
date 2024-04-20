@@ -11,3 +11,21 @@ Early testing phase to refine functionality and usability.
 Real-time monitoring of course availability and status changes.
 Instant text message notifications when a course spot opens up.
 Customizable settings to meet individual preferences and needs.
+
+### Usage:
+
+To get started, first install the dependencies required for the script:
+```python
+pip install -r requirements.txt
+```
+
+Then, create a file titled "credentials.py" with the following format:
+```python
+USERNAME='your_UT_eid_here'
+PASSWORD='your_password_here'
+```
+
+To run the script, simply navigate to the command line and run:
+```python
+python courseTrack.py -h
+```
