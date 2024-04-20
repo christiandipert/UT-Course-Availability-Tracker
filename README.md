@@ -28,3 +28,12 @@ To run the script, simply navigate to the command line and run:
 ```python
 python courseTrack.py -h
 ```
+
+You can view a usage demo here:
+https://github.com/christiandipert/UT-Course-Availability-Tracker/assets/82560157/69d0a92f-44e1-4d53-a0dc-27bd670c3eff
+
+
+
+
+
+```
