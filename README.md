@@ -4,13 +4,14 @@ This Python script, tailored specifically for the University of Texas at Austin,
 
 In the dynamic academic environment of UT Austin, certain courses may lack a waitlist option, requiring vigilant monitoring to secure enrollment. This script automates the process, continuously checking for status changes and notifying users via text message when a coveted course becomes available. By leveraging this tool during its early testing phase, users can gain a competitive edge in course selection and enrollment.
 
-Key Features:
+# NOTE:
+This script is in EARLY TESTING and ONLY WORKS IF DUO MOBILE IS SET TO CALL YOU! OTHERWISE it will NOT WORK! I am working to hopefully add functionality for mobile app users and text message users.
 
-Specifically tailored for the University of Texas at Austin's course system.
-Early testing phase to refine functionality and usability.
-Real-time monitoring of course availability and status changes.
-Instant text message notifications when a course spot opens up.
-Customizable settings to meet individual preferences and needs.
+# Key Features:
+
+- Specifically tailored for the UT course system.
+- Allows you to 'snipe' non-waitlisted classes that randomly open and close.
+- Customizable settings to meet individual preferences and needs.
 
 ### Usage:
 
